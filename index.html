@@ -74,30 +74,112 @@
       </div>
 
       <!-- Lista de tarefas -->
-      <ul class="rounded-lg overflow-hidden text-lg">
-        <li class="flex items-center gap-4 bg-sky-100 odd:bg-sky-200 py-2 px-4">
-          <input type="checkbox" class="size-4" />
-          <div class="flex-1 text-sky-700 truncate">
-            <div class="text-sky-700 truncate font-medium">Minha tarefa 1</div>
-            <div class="text-xs flex gap-4">
-              <span><i class="fa-regular fa-calendar"></i> <b>Data:</b> 12/12/2024</span>
-              <span><i class="fa-regular fa-clock"></i> <b>Início:</b> 16:47</span>
-              <span><i class="fa-regular fa-clock"></i> <b>Fim:</b> 18:00</span>
-            </div>
-          </div>
-          <button
-            class="px-1 rounded-full text-sky-400 hover:text-sky-500 active:text-sky-600 focus:outline-none focus-visible:ring-4 transition-all"
-          >
-            <i class="fa-solid fa-pencil"></i>
-          </button>
-          <button
-            class="px-1 rounded-full text-sky-400 hover:text-sky-500 active:text-sky-600 focus:outline-none focus-visible:ring-4 transition-all"
-          >
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
-        </li>
-      </ul>
+      <ul id="todos" class="rounded-lg overflow-hidden text-lg"></ul>
     </div>
+
+    <!-- Modal de editar tarefa -->
+    <dialog id="task-edit-modal" class="bg-white w-[700px] shadow-md rounded-xl px-6 py-4">
+      <div class="flex">
+        <h2 class="flex-1 font-medium text-2xl">Editar tarefa</h2>
+        <button class="close-modal px-1 rounded-full focus:outline-none focus-visible:ring-4 transition-all">
+          <i class="fa-solid fa-close"></i>
+        </button>
+      </div>
+
+      <hr class="my-4" />
+
+      <form id="edit-task" class="flex-1 flex flex-col gap-2">
+        <!-- Texto da tarefa -->
+        <div class="flex gap-2">
+          <input
+            type="text"
+            class="w-full px-4 py-2 border rounded-full text-lg focus:ring-4 focus:outline-none transition-all"
+            placeholder="Criar nova tarefa..."
+            autofocus
+            autocomplete="off"
+            name="text"
+            required
+          />
+        </div>
+
+        <div class="flex gap-2">
+          <!-- Data da tarefa -->
+          <label class="w-full mt-4">
+            <div class="text-center mb-1">Data</div>
+            <input
+              type="date"
+              class="w-full px-4 py-2 border rounded-full text-lg focus:ring-4 focus:outline-none transition-all"
+              name="date"
+              required
+            />
+          </label>
+
+          <!-- Hora de início da tarefa -->
+          <label class="w-full mt-4">
+            <div class="text-center mb-1">Início</div>
+            <input
+              type="time"
+              class="w-full px-4 py-2 border rounded-full text-lg focus:ring-4 focus:outline-none transition-all"
+              name="start"
+              required
+            />
+          </label>
+
+          <!-- Hora de fim da tarefa -->
+          <label class="w-full mt-4">
+            <div class="text-center mb-1">Fim</div>
+            <input
+              type="time"
+              class="w-full px-4 py-2 border rounded-full text-lg focus:ring-4 focus:outline-none transition-all"
+              name="end"
+              required
+            />
+          </label>
+        </div>
+
+        <!-- Botão editar tarefa -->
+        <button
+          class="px-4 py-2 bg-sky-500 hover:bg-sky-400 active:bg-sky-300 rounded-full text-white focus:ring-4 focus-visible:outline-none transition-all w-64 m-auto mt-4 text-xl"
+        >
+          <i class="fa-solid fa-pencil mr-2"></i>
+          Editar tarefa
+        </button>
+      </form>
+    </dialog>
+
+    <!-- Modal de excluir tarefa -->
+    <dialog id="task-delete-modal" class="bg-white w-[700px] shadow-md rounded-xl px-6 py-4">
+      <div class="flex">
+        <h2 class="flex-1 font-medium text-2xl">Excluir tarefa</h2>
+        <button class="close-modal px-1 rounded-full focus:outline-none focus-visible:ring-4 transition-all">
+          <i class="fa-solid fa-close"></i>
+        </button>
+      </div>
+
+      <hr class="my-4" />
+
+      <p>Tem certeza que deseja excluir esta tarefa?</p>
+
+      <p class="task-text font-medium mt-2">Bla bla bla</p>
+
+      <hr class="my-4" />
+
+      <div class="text-xl mt-4 text-right">
+        <button
+          class="delete-no px-4 py-2 bg-red-500 hover:bg-red-400 active:bg-red-300 rounded-full text-white focus:ring-4 focus-visible:outline-none transition-all mr-2"
+        >
+          Não
+          <i class="fa-solid fa-close ml-2"></i>
+        </button>
+
+        <button
+          class="delete-yes px-4 py-2 bg-green-500 hover:bg-green-400 active:bg-green-300 rounded-full text-white focus:ring-4 focus-visible:outline-none transition-all"
+        >
+          Sim
+          <i class="fa-solid fa-check ml-2"></i>
+        </button>
+      </div>
+    </dialog>
 
     <script src="script.js" type="module"></script>
   </body>
